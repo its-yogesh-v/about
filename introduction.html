@@ -11,13 +11,22 @@
       font-family: Arial, sans-serif;
       padding: 20px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .greeting {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
     }
     .button-container {
       display: flex;
-      justify-content: center;
       gap: 15px;
-      margin-top: 20px;
       flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 600px;
     }
     .btn {
       background-color: navy;
@@ -26,49 +35,38 @@
       padding: 12px 24px;
       border-radius: 4px;
       font-size: 16px;
+      flex: 1 1 auto;
+      text-align: center;
       transition: opacity 0.2s ease;
     }
     .btn:hover { opacity: 0.8; }
-    .error-message {
-      color: red;
-      font-size: 16px;
-      margin-bottom: 10px;
+    .pdf-container {
+      width: 100%;
+      flex: 1;
+      max-width: 800px;
+      height: 80vh;
+      margin-top: 10px;
+    }
+    .pdf-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
     @media (max-width: 600px) {
-      .button-container { flex-direction: column; gap: 10px; }
-      .btn { width: 100%; font-size: 18px; }
+      .greeting { font-size: 1.25rem; }
+      .btn { font-size: 18px; padding: 14px; }
+      .pdf-container { height: 60vh; }
     }
   </style>
 </head>
 <body>
-  <h1>Yogesh Vishwakarma</h1>
+  <div class="greeting">Hi</div>
   <div class="button-container">
-    <a class="btn" href="resume/yogesh_v_resume.pdf" download>Download Resume</a>
-    <a class="btn" href="mailto:youremail@example.com">Email Me</a>
+    <a class="btn" href="https://www.linkedin.com/in/its-yogesh-v/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="resume/yogesh_v_resume.pdf" download>Download this Resume</a>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const downloadBtn = document.querySelector('a.btn[download]');
-      const container = document.querySelector('.button-container');
-      fetch(downloadBtn.href, { method: 'HEAD' })
-        .then(response => {
-          if (!response.ok) {
-            downloadBtn.remove();
-            const msg = document.createElement('p');
-            msg.className = 'error-message';
-            msg.textContent = 'Resume is unavailable. Please contact me via email.';
-            container.insertBefore(msg, container.firstChild);
-          }
-        })
-        .catch(() => {
-          downloadBtn.remove();
-          const msg = document.createElement('p');
-          msg.className = 'error-message';
-          msg.textContent = 'Resume is unavailable. Please contact me via email.';
-          container.insertBefore(msg, container.firstChild);
-        });
-    });
-  </script>
+  <div class="pdf-container">
+    <iframe src="resume/yogesh_v_resume.pdf"></iframe>
+  </div>
 </body>
 </html>
