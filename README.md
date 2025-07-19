@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @yogesh-vishwakarma
 - 👀 I’m interested in ...
-- 📫 Contact me on my LinkedIn account Yogesh--Vishwakarma ...
+- 📫 Contact me on [linkedIn](https://www.linkedin.com/in/its-yogesh-v/)
 
 <!---
 yogesh-vishwakarma/yogesh-vishwakarma is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
