@@ -42,31 +42,47 @@
     .btn:hover { opacity: 0.8; }
     .pdf-container {
       width: 100%;
-      flex: 1;
       max-width: 800px;
-      height: 80vh;
+      overflow: hidden;
       margin-top: 10px;
     }
     .pdf-container iframe {
       width: 100%;
       height: 100%;
       border: none;
+      display: block;
     }
     @media (max-width: 600px) {
       .greeting { font-size: 1.25rem; }
       .btn { font-size: 18px; padding: 14px; }
-      .pdf-container { height: 60vh; }
     }
   </style>
 </head>
 <body>
   <div class="greeting">Hi</div>
   <div class="button-container">
-    <a class="btn" href="https://www.linkedin.com/in/its-yogesh-v/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener">LinkedIn</a>
     <a class="btn" href="resume/yogesh_v_resume.pdf" download>Download this Resume</a>
   </div>
   <div class="pdf-container">
-    <iframe src="resume/yogesh_v_resume.pdf"></iframe>
+    <iframe src="resume/yogesh_v_resume.pdf" id="pdfFrame"></iframe>
   </div>
+  <script>
+    function resizePDF() {
+      const greeting = document.querySelector('.greeting');
+      const buttons = document.querySelector('.button-container');
+      const pdfContainer = document.querySelector('.pdf-container');
+      const bodyStyles = getComputedStyle(document.body);
+      const paddingV = parseFloat(bodyStyles.paddingTop) + parseFloat(bodyStyles.paddingBottom);
+      const availableHeight = window.innerHeight 
+        - greeting.offsetHeight 
+        - buttons.offsetHeight 
+        - paddingV 
+        - 20; /* extra spacing */
+      pdfContainer.style.height = availableHeight + 'px';
+    }
+    window.addEventListener('resize', resizePDF);
+    document.addEventListener('DOMContentLoaded', resizePDF);
+  </script>
 </body>
 </html>
