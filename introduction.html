@@ -4,85 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yogesh Vishwakarma - Resume</title>
+  <!-- Professional Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Reset and basic styling */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary-color: #002147;
+      --font-family: 'Open Sans', sans-serif;
+      --button-height: 80px;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+      background-color: #ffffff;
+    }
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      text-align: center;
+      font-family: var(--font-family);
+      color: #222;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      min-height: 100vh;
     }
-    .greeting {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
-    .button-container {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 20px;
-      width: 100%;
-      max-width: 600px;
-    }
-    .btn {
-      background-color: navy;
-      color: #fff;
-      text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 4px;
-      font-size: 16px;
-      flex: 1 1 auto;
-      text-align: center;
-      transition: opacity 0.2s ease;
-    }
-    .btn:hover { opacity: 0.8; }
     .pdf-container {
+      flex: 1;
       width: 100%;
-      max-width: 800px;
-      overflow: hidden;
-      margin-top: 10px;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
     }
-    .pdf-container iframe {
+    .pdf-frame {
+      flex: 1;
+      border: none;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       width: 100%;
       height: 100%;
-      border: none;
-      display: block;
     }
-    @media (max-width: 600px) {
-      .greeting { font-size: 1.25rem; }
-      .btn { font-size: 18px; padding: 14px; }
+    @media (min-width: 768px) {
+      .pdf-frame {
+        max-width: 900px;
+        margin: auto;
+      }
+    }
+    .download-button {
+      position: sticky;
+      bottom: 0;
+      width: 100%;
+      background: transparent;
+      padding: 1rem 0;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+    }
+    .download-button a {
+      background: var(--primary-color);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      transition: background 0.3s ease;
+    }
+    .download-button a:hover {
+      background: #003569;
+    }
+    @media (min-width: 768px) {
+      .download-button a {
+        font-size: 1.25rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="greeting">Hi</div>
-  <div class="button-container">
-    <a class="btn" href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="btn" href="resume/yogesh_v_resume.pdf" download>Download this Resume</a>
-  </div>
   <div class="pdf-container">
-    <iframe src="resume/yogesh_v_resume.pdf" id="pdfFrame"></iframe>
+    <embed 
+      src="/resume/yogesh_v_resume.pdf"
+      type="application/pdf"
+      class="pdf-frame"
+    >
   </div>
-  <script>
-    function resizePDF() {
-      const greeting = document.querySelector('.greeting');
-      const buttons = document.querySelector('.button-container');
-      const pdfContainer = document.querySelector('.pdf-container');
-      const bodyStyles = getComputedStyle(document.body);
-      const paddingV = parseFloat(bodyStyles.paddingTop) + parseFloat(bodyStyles.paddingBottom);
-      const availableHeight = window.innerHeight 
-        - greeting.offsetHeight 
-        - buttons.offsetHeight 
-        - paddingV 
-        - 20; /* extra spacing */
-      pdfContainer.style.height = availableHeight + 'px';
-    }
-    window.addEventListener('resize', resizePDF);
-    document.addEventListener('DOMContentLoaded', resizePDF);
-  </script>
+  <div class="download-button">
+    <a href="/resume/yogesh_v_resume.pdf" download>Download</a>
+  </div>
 </body>
 </html>
