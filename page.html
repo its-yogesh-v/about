@@ -2,11 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Yogesh Vishwakarma • Details</title>
-
-  <!-- favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <!-- Inter font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,130 +14,284 @@
   />
 
   <style>
-    *{box-sizing:border-box;margin:0}
-    body{
-      font-family:"Inter",system-ui,sans-serif;
-      background:#fff;
-      color:#111;
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: #fff;
+      color: #111;
     }
 
-    /* ---------- HERO ---------- */
-    header{padding:2rem 1rem 1rem;text-align:center}
-    h1{font-size:1.9rem;font-weight:700;margin-bottom:.7rem}
-    p.lead{font-size:1.05rem;margin-bottom:1.75rem;color:#444}
+    .main-content { display: block; }
 
-    /* action buttons */
-    .actions{
-      display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem
+    header {
+      padding: 2rem 1rem 1rem;
+      text-align: center;
     }
-    .btn{
-      display:inline-flex;align-items:center;gap:.5rem;
-      padding:.7rem 1.4rem;border:none;border-radius:6px;
-      font-weight:600;color:#fff;text-decoration:none;transition:opacity .15s
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: .7rem;
     }
-    .btn svg{width:18px;height:18px;fill:#fff}
-    .btn:hover{opacity:.85}
-
-    .btn-linkedin{background:#0a66c2}       /* LinkedIn brand blue  */
-    .btn-email   {background:#0b2447}       /* navy email button    */
-
-    /* -------- RESUME IMAGE -------- */
-    .resume-wrapper{
-      display:flex;justify-content:center;
-      padding:1rem;        /* subtle white margin */
-      margin-bottom:5rem;  /* room for sticky bar */
-    }
-    .preview{
-      width:auto;height:auto;
-      max-width:100%;max-height:calc(100vh - 8rem);
-      object-fit:contain;
+    p.lead {
+      font-size: 1.05rem;
+      margin-bottom: 1.75rem;
+      color: #444;
     }
 
-    /* ---------- STICKY BAR ---------- */
-    .download-bar{
-      position:fixed;bottom:0;left:0;width:100%;z-index:999;
-      background:transparent;               /* <-- now see-through */
-      display:flex;justify-content:center;align-items:center;
-      padding:.8rem 1rem;
-      pointer-events:none;                  /* bar itself non-obtrusive */
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
     }
-    /* keep buttons clickable */
-    .bar-content{pointer-events:auto;display:flex;align-items:center}
-    .download-btn{
-      display:inline-flex;align-items:center;gap:.6rem;
-      padding:.8rem 2rem;border-radius:8px;font-weight:700;
-      background:#0072c6;color:#fff;text-decoration:none;transition:opacity .15s
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .7rem 1.4rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      transition: opacity .15s, transform .2s ease;
     }
-    /* add these two rules inside the existing <style> block */
-.btn,
-.download-btn,
-.call-btn { transition: transform .2s ease; }      /* smooth grow / shrink */
-
-.btn:active,
-.download-btn:active,
-.call-btn:active { transform: scale(1.1); }        /* 20 % bigger on click */
-
-    .download-btn svg{width:22px;height:22px;fill:#fff}
-    .download-btn:hover{opacity:.85}
-
-    /* circular phone */
-    .call-btn{
-      margin-left:1rem;
-      width:48px;height:48px;border-radius:50%;
-      background:#28a745;display:flex;justify-content:center;align-items:center;
-      text-decoration:none
+    .btn:active { transform: scale(1.1); }
+    .btn svg,
+    .btn img.whatsapp-icon {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
     }
-    .call-btn svg{width:26px;height:26px;fill:#fff}
-    .call-btn:hover{opacity:.85}
+    .btn-linkedin { background: #0a66c2; }
+    .btn-email    { background: #0b2447; }
+    .btn-whatsapp {
+      background: #25D366;
+      display: none; /* hidden on mobile */
+    }
+
+    /* Desktop: show WhatsApp in header */
+    @media screen and (min-width: 1024px) {
+      .btn-whatsapp {
+        display: inline-flex;
+      }
+    }
+
+    .note {
+      font-size: .95rem;
+      color: #666;
+      margin-top: 1rem;
+    }
+    .note span { font-weight: 600; }
+
+    .inline-download-area {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .inline-arrow {
+      width: 24px;
+      margin-right: .5rem;
+      flex-shrink: 0;
+      transform: rotate(45deg);
+    }
+    .inline-download {
+      display: inline-flex;
+    }
+
+    .resume-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      margin-bottom: 5rem;
+    }
+    .preview {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: calc(100vh - 8rem);
+      object-fit: contain;
+    }
+
+     .call-btn {
+      position: absolute;
+      right: 1rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #28a745;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      transition: opacity .15s, transform .2s ease;
+    }
+    .call-btn svg {
+      width: 26px;
+      height: 26px;
+      fill: #fff;
+    }
+
+    /* Sticky bottom bar */
+    .download-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      background: transparent;
+      display: flex;
+      justify-content: center; /* center download button */
+      align-items: center;
+      padding: .8rem 1rem;
+      pointer-events: none;
+    }
+    .download-bar a {
+      pointer-events: auto;
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .8rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      background: #0072c6;
+      color: #fff;
+      text-decoration: none;
+      transition: opacity .15s, transform .2s ease;
+    }
+    .download-btn:hover { opacity: .85; }
+    .download-btn:active { transform: scale(1.1); }
+
+    .whatsapp-btn {
+      position: absolute;
+      right: 1rem;
+      background: none;      /* remove green padding */
+      padding: 0;
+      width: auto;
+      height: auto;
+      text-decoration: none;
+      transition: opacity .15s, transform .2s ease;
+    }
+    .whatsapp-btn img.whatsapp-icon {
+      width: 26px;
+      height: 26px;
+    }
+    .whatsapp-btn:hover { opacity: .85; }
+    .whatsapp-btn:active { transform: scale(1.1); }
+
+    /* Increase WhatsApp icon by 50% on mobile */
+    @media screen and (max-width: 1023px) {
+      .whatsapp-btn img.whatsapp-icon {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    /* Desktop grid layout */
+    @media screen and (min-width: 1024px) {
+      .main-content {
+        display: grid;
+        grid-template-columns:
+          25%  /* left margin */
+          25%  /* header/actions */
+          5%   /* gutter */
+          20%  /* resume */
+          25%; /* right margin */
+        align-items: center;
+        min-height: 100vh;
+      }
+      .main-content > header {
+        grid-column: 2;
+        margin-bottom: 0;
+      }
+      .main-content > .resume-wrapper {
+        grid-column: 4;
+        margin-bottom: 0;
+      }
+      .inline-download-area {
+        display: inline-flex;
+        justify-content: center;
+      }
+      .download-bar {
+        display: none;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <!-- ---------- TOP SECTION ---------- -->
-  <header>
-    <h1>Hi!</h1>
-    <p class="lead">Feel free to reach out.</p>
+  <div class="main-content">
+    <!-- Header column -->
+    <header>
+      <h1>Hi!</h1>
+      <p class="lead">Please reach out by phone for a quick  discussion.</p>
 
-    <div class="actions">
-      <a class="btn btn-linkedin" href="https://www.linkedin.com/in/its-yogesh-v/" target="_blank" rel="noopener">
-        <!-- LinkedIn icon -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M20.45 3H3.55A1.54 1.54 0 002 4.54v14.92A1.54 1.54 0 003.55 21h16.9A1.54 1.54 0 0022 19.46V4.54A1.54 1.54 0 0020.45 3zM8.34 18.34H5.67V9.88h2.67zm-1.34-9.77a1.55 1.55 0 111.55-1.55 1.55 1.55 0 01-1.55 1.55zm11.33 9.77h-2.67v-4.61c0-1.1-.02-2.51-1.53-2.51-1.53 0-1.76 1.19-1.76 2.44v4.68h-2.67V9.88h2.56v1.17h.04a2.8 2.8 0 012.53-1.39c2.7 0 3.2 1.78 3.2 4.09z"/>
-        </svg>
-        LinkedIn
-      </a>
+      <div class="actions">
+        <a class="btn btn-linkedin"
+           href="https://www.linkedin.com/in/its-yogesh-v/"
+           target="_blank" rel="noopener">
+          LinkedIn
+        </a>
+        <a class="btn btn-email"
+           href="mailto:itsyogesh.v@outlook.com">
+          Email Me
+        </a>
+        <!-- Desktop-only WhatsApp -->
+        <!-- <a class="btn btn-whatsapp"
+           href="https://wa.me/911234567890"
+           target="_blank" rel="noopener">
+          <img src="WhatsApp.svg" alt="WhatsApp chat" class="whatsapp-icon" />
+          WhatsApp
+        </a> -->
+      </div>
 
-      <a class="btn btn-email" href="mailto:itsyogesh.v@outlook.com">
-        <!-- Mail icon -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.01L12 13 4 6.01V6zm0 12H4V8l8 7 8-7v10z"/>
-        </svg>
-        Email Me
-      </a>
+      <p class="note">
+        Please download my resume for the most up‑to‑date version.
+      </p>
+
+      <div class="inline-download-area">
+        <img src="arrow.png"
+             alt="arrow pointing to download"
+             class="inline-arrow" />
+        <a class="download-btn inline-download"
+           href="resume.pdf"
+           download>
+          Download Resume
+        </a>
+      </div>
+    </header>
+
+    <!-- Resume column -->
+    <div class="resume-wrapper">
+      <img src="resume.jpg"
+           alt="Résumé preview"
+           class="preview"
+           loading="lazy" />
     </div>
-  </header>
-
-  <!-- ---------- RESUME PREVIEW ---------- -->
-  <div class="resume-wrapper">
-    <img src="resume.jpg" alt="Résumé" class="preview" loading="lazy" />
   </div>
 
-  <!-- ---------- STICKY BAR ---------- -->
+  <!-- Mobile-only sticky download + WhatsApp -->
   <div class="download-bar">
-    <div class="bar-content">
-      <a class="download-btn" href="resume.pdf" download>
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 16l4.95-5.05-1.4-1.41L13 11.17V3h-2v8.17l-2.54-2.63-1.41 1.41L12 16zM5 18v2h14v-2H5z"/>
-        </svg>
-        Download Resume
-      </a>
-
-      <!-- replace phone no. -->
-<!--       <a class="call-btn" href="tel:+911234567890" aria-label="Call me">
+    <a class="download-btn" href="resume.pdf" download>
+      Download Resume
+    </a>
+    <!-- replace phone no. -->
+      <a class="call-btn" href="tel:+911234567890" aria-label="Call me">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1l-2.2 2.2z"/>
         </svg>
-      </a> -->
-    </div>
+      </a>
+    <!-- <a class="whatsapp-btn"
+       href="https://wa.me/911234567890"
+       target="_blank"
+       rel="noopener"
+       aria-label="Chat on WhatsApp">
+      <img src="WhatsApp.svg" alt="WhatsApp chat" class="whatsapp-icon" />
+    </a> -->
   </div>
 </body>
 </html>
