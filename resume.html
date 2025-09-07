@@ -49,6 +49,13 @@
       flex-wrap: wrap;
       margin-bottom: 1rem;
     }
+    .actions .btn {
+      flex: 1 1 0;
+      justify-content: center;
+      min-width: 8.5rem; /* ensure consistent minimum width for text buttons */
+    }
+    .actions .btn-email { flex: 2 1 0; }
+    .actions .btn.btn-icon-only { min-width: auto; }
     .btn {
       display: inline-flex;
       align-items: center;
@@ -68,8 +75,17 @@
       height: 18px;
       fill: #fff;
     }
+    .btn img.leetcode-icon {
+      height: 25px; /* increase visual size */
+      width: auto;  /* keep aspect ratio */
+    }
+    .btn-icon-only {
+      padding: 0 1rem; /* horizontal padding only */
+      justify-content: center;
+    }
     .btn-linkedin { background: #0a66c2; }
-    .btn-email    { background: #0b2447; }
+    .btn-email    { background: #0b2447; padding: .4rem 0; }
+    .btn-leetcode { background: #1A1A1A; }
     .btn-whatsapp {
       background: #25D366;
       display: none; /* hidden on mobile */
@@ -95,11 +111,17 @@
       justify-content: center;
       margin-top: 1rem;
     }
+    .download-center {
+      position: relative;
+      display: inline-block;
+    }
     .inline-arrow {
       width: 24px;
+      position: absolute;
+      right: 100%;
       margin-right: .5rem;
-      flex-shrink: 0;
-      transform: rotate(45deg);
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
     }
     .inline-download {
       display: inline-flex;
@@ -235,6 +257,12 @@
       <p class="lead">Please reach out by phone for a quick  discussion.</p>
 
       <div class="actions">
+        <a class="btn btn-leetcode btn-icon-only"
+           href="https://leetcode.com/u/yogesh-v/"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="View my LeetCode profile">
+          <img src="LeetCode_Logo.png" alt="LeetCode" class="leetcode-icon" />
+        </a>
         <a class="btn btn-linkedin"
            href="https://www.linkedin.com/in/its-yogesh-v/"
            target="_blank" rel="noopener">
@@ -258,6 +286,7 @@
       </p>
 
       <div class="inline-download-area">
+        <span class="download-center">
         <img src="arrow.png"
              alt="arrow pointing to download"
              class="inline-arrow" />
@@ -266,6 +295,7 @@
            download>
           Download Resume
         </a>
+        </span>
       </div>
     </header>
 
